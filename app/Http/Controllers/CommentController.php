@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
-use App\Models\Product;
+namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
+use App\Models\Comment;
 
 class CommentController extends Controller
 {
-    public function store(Request $request, Product $product)
+    public function store(Request $request, $productId)
     {
         $request->validate([
-            'comment' => 'required|string|max:255',
+            'comment' => 'required|string|max:500',
         ]);
 
-        $comment = new Comment();
-        $comment->comment = $request->input('comment');
-        $comment->product_id = $product->id;
-        $comment->save();
+        Comment::create([
+            'product_id' => $productId,
+            'user_id' => auth()->id(),
+            'comment' => $request->comment,
+        ]);
 
-        return redirect()->back()->with('success', 'Comment added successfully!');
+        return redirect()->back()->with('success', 'Comment posted!');
     }
 }

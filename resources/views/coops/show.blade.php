@@ -35,11 +35,6 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         @forelse ($coop->products as $product)
 
-            @php
-                $reviewsCount = $product->comments->count(); 
-                $averageRating = $reviewsCount ? round($product->comments->avg('rating'), 1) : 0;
-            @endphp
-
             <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col hover:shadow-xl transition-shadow duration-300 max-w-sm mx-auto">
 
                 <!-- Product Image -->
@@ -51,24 +46,24 @@
 
                 <!-- Product Info -->
                 <div class="p-3 flex flex-col flex-1">
-                    <h2 class="text-lg font-semibold mb-1 text-gray-800 truncate">{{ $product->name }}</h2>
-
-                    <!-- Reviews -->
-                    <div class="flex items-center mb-2">
-                        @for ($i = 1; $i <= 5; $i++)
-                            <svg class="w-4 h-4 {{ $i <= round($averageRating) ? 'text-yellow-400' : 'text-gray-300' }}" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.288 3.946a1 1 0 00.95.69h4.15c.969 0 1.371 1.24.588 1.81l-3.36 2.44a1 1 0 00-.364 1.118l1.288 3.945c.3.92-.755 1.688-1.54 1.118l-3.36-2.44a1 1 0 00-1.176 0l-3.36 2.44c-.784.57-1.838-.197-1.539-1.118l1.288-3.945a1 1 0 00-.364-1.118L2.073 9.373c-.783-.57-.38-1.81.588-1.81h4.15a1 1 0 00.95-.69l1.288-3.946z"/>
-                            </svg>
-                        @endfor
-                        <span class="ml-2 text-gray-600 text-sm">{{ $averageRating }}/5 ({{ $reviewsCount }} reviews)</span>
-                    </div>
+                    <h2 class="text-lg font-semibold mb-2 text-gray-800 truncate">{{ $product->name }}</h2>
 
                     <!-- Comments Section Toggle -->
-                    <details class="mb-2">
+                    <details class="mb-3">
                         <summary class="cursor-pointer font-semibold text-indigo-600 text-sm">View Comments</summary>
-                        <div class="mt-1 space-y-1 max-h-36 overflow-y-auto text-sm">
+                        <div class="mt-2 space-y-2 max-h-36 overflow-y-auto text-sm">
                             @forelse ($product->comments as $comment)
-                                <div class="bg-gray-100 p-1 rounded">{{ $comment->comment }}</div>
+                                <div class="flex items-start bg-gray-100 p-2 rounded">
+                                    <img src="{{ $comment->user && $comment->user->image ? asset('images/' . $comment->user->image) : asset('images/default-user.jpg') }}" 
+                                         alt="{{ $comment->user ? $comment->user->name : 'Deleted User' }}" 
+                                         class="w-6 h-6 rounded-full mr-2 object-cover border">
+                                    <div>
+                                        <p class="text-gray-800 text-sm font-semibold">
+                                            {{ $comment->user ? $comment->user->name : 'Deleted User' }}
+                                        </p>
+                                        <p class="text-gray-700 text-sm">{{ $comment->comment }}</p>
+                                    </div>
+                                </div>
                             @empty
                                 <p class="text-gray-500 text-sm">No comments yet.</p>
                             @endforelse
@@ -83,6 +78,7 @@
                             Post Comment
                         </button>
                     </form>
+
                 </div>
             </div>
 
