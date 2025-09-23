@@ -107,7 +107,8 @@
                         </div>
                         <input type="hidden" name="rating" value="0" id="rating-{{ $product->id }}">
                         <textarea name="comment" rows="2" class="w-full p-2 border rounded-lg text-gray-700 mb-2 text-sm" placeholder="Add a comment or review..."></textarea>
-                        <button type="submit"   class="w-full bg-green-700 text-white font-bold py-1.5 px-4 rounded-lg hover:bg-green-800 transition-colors text-sm">
+                        <button type="submit"
+                            class="w-full bg-blue-700 text-white font-bold py-1.5 px-4 rounded-lg hover:bg-blue-800 transition-colors text-sm">
                             Post Comment / Review
                         </button>
                     </form>
