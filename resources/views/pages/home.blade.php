@@ -21,8 +21,8 @@
     </div>
 
     <div class="figuig-to-you-container" id="propo">
-        <div class="figuig-to-you">
-            <p>De Figuig a vous</p>
+        <div class="figuig-to-you"> 
+            <p>De Figuig à vous</p>
         </div>
         <div class="figuig-to-you-content">
             <p>
@@ -30,6 +30,9 @@
                 artisanaux, avec un ancrage fort dans la région de Figuig.
                 Elle met en relation directe les producteurs, coopératives et artisans locaux avec les
                 consommateurs et partenaires, en garantissant authenticité, traçabilité et qualité.
+            </p>
+            <p>
+                هدفنا هو دعم الاقتصاد المحلي، إبراز هوية فكيك التراثية، وتقديم منتجات عالية الجودة مباشرة من المنتج إلى المستهلك.
             </p>
         </div>
         <div class="ligne">
@@ -63,7 +66,7 @@
                         <div class="card-container-image">
                             <img src="/images/icones/store.png" alt="" srcset="">
                         </div>
-                        <p><a href="{{Route('register', ['type' => 1])}}">Jm3iya ?</a></p>
+                        <p><a href="{{Route('register', ['type' => 1])}}">Association ?</a></p>
                     </div>
                 </div>
             </div>

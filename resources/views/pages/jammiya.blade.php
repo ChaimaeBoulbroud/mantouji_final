@@ -31,7 +31,7 @@
                         </form>
                     </div>
                     <div class="sidebar-footer-item">
-                        <a href="{{Route('home')}}">Home</a>
+                        <a href="{{Route('home')}}">Acceuil</a>
                     </div>
                 </div>
             </div>
@@ -51,37 +51,39 @@
         </div>
     </div>
 
-    <div class="header">
-        <p>Products</p>
-    </div>
+   <div class="main-content">
+        <div class="header">
+            <p>Products</p>
+        </div>
 
-    <div class="content">
-        @foreach ($products as $product)
-            <div class="product-card">                                  
-                <img src="{{ asset('storage/'.$product->image) }}" alt="Product Image" class="product-img">
-                <h3 class="product-name">{{ $product->name }}</h3>
+        <div class="content">
+            @foreach ($products as $product)
+                <div class="product-card">                                  
+                    <img src="{{ asset('storage/'.$product->image) }}" alt="Product Image" class="product-img">
+                    <h3 class="product-name">{{ $product->name }}</h3>
 
-                <div class="product-rating">
-                    @for ($i = 0; $i < $product->reviews; $i++)
-                        <span>★</span>
-                    @endfor
-                    <div style="padding-left: 4px; padding-top: 4px; font-size: 14px; color: #555;">
-                        ({{ $product->reviews_number }})
+                    <div class="product-rating">
+                        @for ($i = 0; $i < $product->reviews; $i++)
+                            <span>★</span>
+                        @endfor
+                        <div style="padding-left: 4px; padding-top: 4px; font-size: 14px; color: #555;">
+                            ({{ $product->reviews_number }})
+                        </div>
                     </div>
+
+                    <div class="product-actions">
+                        <a href="{{ Route('editeProduct', $product->id)}}"><img src="/images/icones/pen.png" alt="" style="width : 35px"></a> 
+                            <form action="{{Route('deleteProduct', $product->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="delete-btn"><img src="/images/icones/delete.png" alt=""   style="width : 35px"></button>
+                            </form>
+                        </div>
+                    <button class="show-comments-btn">Show Comments</button>
                 </div>
-
-                <div class="product-actions">
-                    <a href="{{ Route('editeProduct', $product->id)}}"><img src="/images/icones/pen.png" alt="" style="width : 35px"></a> 
-                        <form action="{{Route('deleteProduct', $product->id)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button class="delete-btn"><img src="/images/icones/delete.png" alt=""   style="width : 35px"></button>
-                        </form>
-                    </div>
-                <button class="show-comments-btn">Show Comments</button>
-            </div>
-        @endforeach
-    </div>
+            @endforeach
+        </div>
+   </div>
 
     <script src="{{asset('js/jammiya.js')}}"></script>
 
