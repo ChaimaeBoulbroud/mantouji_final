@@ -44,10 +44,11 @@
             <div class="p-1 shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg">
                 <div class="bg-white rounded-lg overflow-hidden flex flex-col items-center p-4">
                     <!-- Coop Logo -->
-                    <img src="{{ $coop->user->image ? asset('images/' . $coop->user->image) : asset('images/default-coop.jpg') }}" 
+                    {{-- <img src="{{ $coop->user->image ? asset('images/' . $coop->user->image) : asset('images/default-coop.jpg') }}" 
                          alt="{{ $coop->user->name }}" 
-                         class="w-20 h-20 rounded-full object-cover border-2 border-orange-600 mb-4">
+                         class="w-20 h-20 rounded-full object-cover border-2 border-orange-600 mb-4"> --}}
 
+                         <img src="{{ $coop->user && $coop->user->image ? asset('images/' . $coop->user->image) : asset('images/default-coop.jpg') }}">
                     <!-- Coop Info -->
                     <div class="text-center">
                         <h2 class="text-lg font-semibold text-gray-800">{{ $coop->user->name }}</h2>

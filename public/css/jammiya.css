@@ -53,15 +53,19 @@
     text-decoration: none;
     color: white;
 }
+.sidebar-content {
+    position: relative;
+    top: 8%;
+}
 .sidebar-logo {
     text-align: center;
-    margin-top: 130px;
+    margin-top: 10px;
 }
 .sidebar-logo img {
     width: 150px;
 }
 .sidebar-footer {
-    margin-top: 120px;
+    margin-top: 20px;
 }
 .sidebar-footer-item {
     width: 100%;
