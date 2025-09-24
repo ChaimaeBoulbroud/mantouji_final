@@ -21,6 +21,25 @@
 
 <div class="container mx-auto px-4 py-6">
 
+    @if(session('success'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <span class="block sm:inline">{{ session('error') }}</span>
+        </div>
+    @endif
+    @if ($errors->any())
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <ul class="list-disc ml-5">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="relative flex justify-center items-center mb-8">
         
         <a href="{{ route('coops.index') }}" 
@@ -64,7 +83,16 @@
                 <div class="p-4 flex flex-col flex-grow">
                     <h2 class="text-xl font-bold mb-2 text-gray-800 truncate">{{ $product->name }}</h2>
 
-                    @php $avgRating = round($product->averageRating(), 1); @endphp
+                    @php 
+                        $avgRating = round($product->averageRating(), 1); 
+                        
+                        // Check if the current authenticated user has already submitted a REVIEW (rating > 0)
+                        $userHasReviewed = auth()->check() && $product->comments()
+                                                ->where('user_id', auth()->id())
+                                                ->where('rating', '>', 0) 
+                                                ->exists();
+                    @endphp
+                    
                     <div class="flex items-center mb-3">
                         @for ($i = 1; $i <= 5; $i++)
                             <span class="{{ $i <= round($avgRating) ? 'text-yellow-500' : 'text-gray-300' }} text-lg">&#9733;</span>
@@ -103,23 +131,40 @@
                         </div>
                     </details>
                     
-                    <form action="{{ route('comments.store', $product->id) }}" method="POST" class="mt-auto">
-                        @csrf
-                        <div class="flex mb-2 stars-container" data-product-id="{{ $product->id }}">
-                            <span class="text-sm font-medium text-gray-700 mr-2">Note:</span>
-                            @for ($i = 1; $i <= 5; $i++)
-                                <span class="star" data-value="{{ $i }}">&#9733;</span>
-                            @endfor
+                    @if(auth()->check())
+                        <form action="{{ route('comments.store', $product->id) }}" method="POST" class="mt-auto">
+                            @csrf
+                            
+                            @if(!$userHasReviewed)
+                                <div class="flex mb-2 stars-container" data-product-id="{{ $product->id }}">
+                                    <span class="text-sm font-medium text-gray-700 mr-2">Note:</span>
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <span class="star" data-value="{{ $i }}">&#9733;</span>
+                                    @endfor
+                                </div>
+                                <input type="hidden" name="rating" value="0" id="rating-{{ $product->id }}">
+                            @else
+                                <div class="p-2 mb-2 text-center bg-gray-100 border border-gray-300 rounded-lg">
+                                    <p class="text-sm font-semibold text-gray-700">✅ Votre note est enregistrée. Vous pouvez commenter à nouveau ci-dessous.</p>
+                                </div>
+                                <input type="hidden" name="rating" value="0"> 
+                            @endif
+
+                            <textarea name="comment" rows="2" 
+                                      class="w-full p-2 border border-gray-300 rounded-lg text-gray-700 mb-2 text-sm focus:ring-orange-500 focus:border-orange-500" 
+                                      placeholder="{{ $userHasReviewed ? 'Ajouter un autre commentaire simple (sans note)...' : 'Ajouter un commentaire ou un avis...' }}"></textarea>
+                            
+                            <button type="submit"
+                                class="w-full bg-gray-200 text-gray-700 font-bold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors text-sm shadow-sm">
+                                **Publier**
+                            </button>
+                        </form>
+                    @else
+                        <div class="mt-auto p-3 text-center bg-yellow-50 border border-yellow-300 rounded-lg">
+                            <p class="text-sm font-medium text-yellow-700">Connectez-vous pour laisser un avis.</p>
                         </div>
-                        <input type="hidden" name="rating" value="0" id="rating-{{ $product->id }}">
-                        <textarea name="comment" rows="2" class="w-full p-2 border border-gray-300 rounded-lg text-gray-700 mb-2 text-sm focus:ring-orange-500 focus:border-orange-500" placeholder="Ajouter un commentaire ou un avis..."></textarea>
-                        
-                        <button type="submit"
-                            class="w-full bg-gray-200 text-gray-700 font-bold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors text-sm shadow-sm">
-                            Publier l'Avis
-                        </button>
-                    </form>
-                </div>
+                    @endif
+                    </div>
             </div>
         @empty
             <p class="text-gray-600 text-center col-span-full py-10 text-xl font-medium">Aucun produit trouvé pour {{ $coop->user->name }}.</p>
@@ -128,41 +173,44 @@
 </div>
 
 <script>
-// Le script JavaScript pour la gestion des étoiles n'a pas besoin d'être traduit
+// The JS must be updated to only run on the stars-container if it is visible.
 document.querySelectorAll('.stars-container').forEach(container => {
-    const stars = container.querySelectorAll('.star');
-    const productId = container.dataset.productId;
-    const hiddenInput = document.getElementById('rating-' + productId);
-    let currentRating = 0; 
+    // Only initialize JS for containers that are actually visible (i.e., user hasn't reviewed yet)
+    if (container.closest('form')) { 
+        const stars = container.querySelectorAll('.star');
+        const productId = container.dataset.productId;
+        const hiddenInput = document.getElementById('rating-' + productId);
+        let currentRating = 0; 
 
-    stars.forEach((star, index) => {
-        star.addEventListener('click', () => {
-            currentRating = index + 1;
-            hiddenInput.value = currentRating;
-            updateStars();
+        stars.forEach((star, index) => {
+            star.addEventListener('click', () => {
+                currentRating = index + 1;
+                hiddenInput.value = currentRating;
+                updateStars();
+            });
+
+            star.addEventListener('mouseover', () => {
+                 stars.forEach(s => s.classList.remove('hovered')); 
+                 for (let i = 0; i <= index; i++) {
+                     stars[i].classList.add('hovered');
+                 }
+            });
+
+            container.addEventListener('mouseleave', () => {
+                 stars.forEach(s => s.classList.remove('hovered'));
+                 updateStars();
+            });
         });
 
-        star.addEventListener('mouseover', () => {
-             stars.forEach(s => s.classList.remove('hovered')); 
-             for (let i = 0; i <= index; i++) {
-                 stars[i].classList.add('hovered');
-             }
-        });
-
-        container.addEventListener('mouseleave', () => {
-             stars.forEach(s => s.classList.remove('hovered'));
-             updateStars();
-        });
-    });
-
-    function updateStars() {
-        stars.forEach((s, i) => {
-            s.classList.remove('selected');
-            s.classList.remove('hovered');
-            if (i < currentRating) {
-                s.classList.add('selected');
-            }
-        });
+        function updateStars() {
+            stars.forEach((s, i) => {
+                s.classList.remove('selected');
+                s.classList.remove('hovered');
+                if (i < currentRating) {
+                    s.classList.add('selected');
+                }
+            });
+        }
     }
 });
 </script>
