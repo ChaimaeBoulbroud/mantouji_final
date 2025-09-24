@@ -107,7 +107,9 @@ html {
 .footer-links-container {
     display: flex;
     justify-content: center;
-    gap: 52px;
+    gap: 61px;
+    flex-wrap: wrap;
+    padding: 28px 0;
 }
 .footer-links ul {
     list-style: none;

@@ -31,10 +31,10 @@
         <div id="side-nav" class="side-nav">
             <span id="close-nav" class="close-btn">&times;</span>
             <ul>
-                <li><a href="#">Accueil</a></li>
-                <li><a href="#">À propos</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#acc">Accueil</a></li>
+                <li><a href="#propo">À propos</a></li>
+                <li><a href="#service">Services</a></li>
+                <li><a href="#conta">Contact</a></li>
             </ul>
         </div>
     </div>
