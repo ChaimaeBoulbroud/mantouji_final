@@ -13,6 +13,8 @@
         <button id="menu-toggle" class="menu-btn">☰</button>
     </nav>
 
+    <div class="space-x"></div>
+
     <div id="sidebar" class="sidebar">
         <button class="side-btn">See Products</button>
         <button id="openModal" class="side-btn">Add New Product</button>

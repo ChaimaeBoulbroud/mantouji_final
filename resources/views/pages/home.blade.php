@@ -11,11 +11,27 @@
     <div class="home">
         <x-navbar />
         <div class="content-container" id="Accueil">
+            <div class="logo">
+                <img src="/images/logo.png" alt="" srcset="">
+            </div>
             <div class="content">
                 <div class="left-content">
                     <p>La richesse de Figuig dans chaque <span>produit</span></p>
                     <p>تمور وحرف فكيك… أصالة تعبر الأجيال</p>
                 </div>
+            </div>
+        </div>
+
+        <div class="btn-home">
+            <div class="btn-home-left"><a href="#service">S'inscrire</a></div>
+            <div class="btn-home-right">
+                @if (Route::has('login'))
+                    @auth
+                        <a href="{{ url('/dashboard') }}">Bienvennue !</a>
+                    @else
+                        <a href="{{Route('login')}}">Déjà-inscrit ?</a>
+                    @endauth
+                @endif
             </div>
         </div>
     </div>

@@ -32,6 +32,7 @@ html {
     background-image: url('/images/bg/figig-1.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
+    background-position-y: 36px;
 }
 .auth-header p {
     text-align: center;
@@ -174,6 +175,50 @@ html {
 .figuig-to-you-content p:nth-child(2) {
     direction: rtl;
     padding: 14px 55px;
+}
+.logo {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.logo img {
+    width: 210px;
+}
+.btn-home {
+    width: 351px;
+    height: 80px;
+    background-color: black;
+    border-radius: 44px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: background 0.3s ease;
+    border: 2px solid #FF7757;
+}
+.btn-home:hover {
+    background-color: #6a760c;
+}
+.btn-home div a {
+    text-decoration: none;
+    color: white;
+    padding: 0 34px;
+    font-size: larger;
+}
+.btn-home-left {
+    width: 50%;
+}
+.btn-home-right {
+    width: 50%;
+    background:  #d98f5a;
+    padding: 27px 0;
+    border-radius: 43px;
+    transition: background 0.3s ease;
+    border: 3px solid;
+}
+.btn-home-right:hover {
+    background:  #5C4033;
 }
 @media (min-width: 1075px) {
     .auth-cards {
