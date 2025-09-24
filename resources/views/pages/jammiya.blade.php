@@ -18,19 +18,21 @@
         <button id="openModal" class="side-btn">Add New Product</button>
         <button id="openModal" class="side-btn"><a href="{{Route('viewPageInfo')}}">Add Or Edite Information</a></button>
         <button id="openModal" class="side-btn"><a href="{{Route('profile.edit')}}">Profile</a></button>
-        <div class="sidebar-logo">
-            <img src="/images/logo.png" alt="" srcset="">
-        </div>
-        <div class="sidebar-footer">
-            <div>
-                <div class="sidebar-footer-item">
-                    <form action="{{Route('logout')}}" method="post">
-                        @csrf
-                        <button type="submit">Logout</button>
-                    </form>
-                </div>
-                <div class="sidebar-footer-item">
-                    <a href="{{Route('home')}}">Home</a>
+        <div class="sidebar-content">
+            <div class="sidebar-logo">
+                <img src="/images/logo.png" alt="" srcset="">
+            </div>
+            <div class="sidebar-footer">
+                <div>
+                    <div class="sidebar-footer-item">
+                        <form action="{{Route('logout')}}" method="post">
+                            @csrf
+                            <button type="submit">Logout</button>
+                        </form>
+                    </div>
+                    <div class="sidebar-footer-item">
+                        <a href="{{Route('home')}}">Home</a>
+                    </div>
                 </div>
             </div>
         </div>
