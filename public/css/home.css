@@ -255,6 +255,151 @@ html {
 .guide-right-img-2 {
     display: none;
 }
+.etapes-container {
+    height: fit-content;
+}
+.etapes-header p {
+    text-align: center;
+    padding: 35px 0;
+    font-weight: bold;
+    font-size: xx-large;
+    text-decoration: underline;
+}
+.etapes-r, .etapes {
+    width: 100%;
+    height: 531px;
+    background-color: #EA8900;
+    border-bottom-left-radius: 200px;
+    border-bottom-right-radius: 200px;
+    margin-bottom: 110px;
+}
+.etapes-parte-1 {
+    text-align: center;
+    font-weight: bold;
+    padding: 19px 0;
+}
+.etapes-parte-1 p:nth-child(1) {
+    font-size: xx-large;
+}
+.etapes-parte-1 p:nth-child(2) {
+    font-size: 30px;
+    padding-top: 8px;
+    color: white;
+    font-weight: bold;
+}
+.etapes-parte-1-content img {
+    width: 150px;
+    margin-top: 18px;
+}
+.etapes-parte-1-content p {
+    padding: 8px 25px;
+    color: white;
+}
+.etapes-parte-2 {
+    text-align: center;
+}
+.etapes-parte-2 img {
+    width: 200px;
+}
+.etapes-parte-2-r img {
+    width: 200px;
+}
+.etapes-parte-2-r {
+    text-align: center;
+}
+@media (min-width: 1000px) {
+    .etapes {
+        width: 82%;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 270px;
+        border-bottom-right-radius: 270px;
+        display: flex;
+        align-items: center;
+    }
+    .etapes-parte-1 {
+        text-align: unset;
+    }
+    .etapes-parte-1-header {
+        padding-left: 53px;
+    }
+    .etapes-parte-1-content {
+        padding-left: 220px;
+    }
+    .etapes-parte-1-content p {
+        max-width: 84%;
+    }
+    .etapes-parte-2 {
+        position: relative;
+        left: 98px;
+    }
+    .etapes-parte-1-header p:nth-child(2) {
+        font-size: 45px !important;
+    }
+
+    .etapes-r {
+        width: 79%;
+        border-bottom-left-radius: 270px;
+        display: flex;
+        align-items: center;
+        direction: rtl;
+        border-top-left-radius: 270px;
+        position: relative;
+        left: 285px;
+        height: 531px;
+        background-color: #EA8900;
+        margin-bottom: 110px;
+        border-bottom-right-radius: 0;
+    }
+    .etapes-parte-1-header {
+        padding-right: 53px;
+    }
+    .etapes-parte-1-content {
+        padding-right: 220px;
+    }
+    .etapes-parte-2-r {
+        position: relative;
+        left: -98px;
+    }
+    .etapes-parte-1-content-r {
+        max-width: unset !important;
+    }
+}
+@media (min-width: 1500px) {
+    .etapes-parte-2 {
+        left: 168px;
+    }
+}
+@media (min-width: 1700px) {
+    .etapes-parte-2 {
+        left: 30%;
+    }
+    .etapes-parte-2-r {
+        position: relative;
+        left: -29%;
+    }
+}
+
+@media (min-width: 1000px) {
+    .etapes-parte-1-content {
+        padding-right: unset;
+    }
+}
+@media (min-width: 1176px) {
+    .etapes-parte-1-content {
+        padding-right: 74px;
+    }
+}
+@media (min-width: 1262px) {
+    .etapes-parte-1-content {
+        padding-right: 150px;
+    }
+}
+@media (min-width: 1350px) {
+    .etapes-parte-1-content {
+        padding-right: 220px;
+    }
+}
 @media (min-width: 1000px) {
     .guide-left-text p {
         text-align: unset;

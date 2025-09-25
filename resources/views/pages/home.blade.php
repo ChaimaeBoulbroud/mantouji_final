@@ -56,6 +56,62 @@
         </div>
     </div>
 
+    <div class="etapes-header">
+        <p>Découvrez rapidement !</p>
+    </div>
+    <div class="etapes-container">
+        <div class="etapes">
+            <div class="etapes-parte-1">
+                <div class="etapes-parte-1-header">
+                    <p>Etape 1</p>
+                    <p>Choisir Ton Profil</p>
+                </div>
+                <div class="etapes-parte-1-content">
+                    <img src="/images/bg/etape 1.PNG" alt="" srcset="">
+                    <p>Choose th way u wanna join us with </p>
+                    <p>A range of powerful tools for viewing, querying and filtering your data.</p>
+                </div>
+            </div>
+            <div class="etapes-parte-2">
+                <img src="/images/bg/etape 1 circle.png" alt="" srcset="">
+            </div>
+        </div>
+
+        <div class="etapes-r">
+            <div class="etapes-parte-1">
+                <div class="etapes-parte-1-header">
+                    <p>Etape 2</p>
+                    <p>Créer Votre Compte</p>
+                </div>
+                <div class="etapes-parte-1-content">
+                    <img src="/images/bg/etape 2.PNG" alt="" srcset="">
+                    <p class="etapes-parte-1-content-r">Choose th way u wanna join us with  </p>
+                    <p class="etapes-parte-1-content-r">A range of powerful tools for viewing, querying and filtering your data.</p>
+                </div>
+            </div>
+            <div class="etapes-parte-2-r">
+                <img src="/images/bg/etape 2 circle.png" alt="" srcset="">
+            </div>
+        </div>
+
+        <div class="etapes">
+            <div class="etapes-parte-1">
+                <div class="etapes-parte-1-header">
+                    <p>Etape 3</p>
+                    <p>laisser Vos Avis</p>
+                </div>
+                <div class="etapes-parte-1-content">
+                    <img src="/images/bg/etape 3.PNG" alt="" srcset="">
+                    <p>Choose th way u wanna join us with </p>
+                    <p>A range of powerful tools for viewing, querying and filtering your data.</p>
+                </div>
+            </div>
+            <div class="etapes-parte-2">
+                <img src="/images/bg/etape 3 circle.png" alt="" srcset="">
+            </div>
+        </div>
+    </div>
+
     <div class="figuig-to-you-container" id="propo">
         <div class="figuig-to-you"> 
             <p>De Figuig à vous</p>
