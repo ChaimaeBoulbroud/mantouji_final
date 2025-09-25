@@ -37,7 +37,7 @@
         @forelse ($coops as $coop)
         {{-- S'assure que toutes les cartes ont la même hauteur --}}
         <a href="{{ route('coops.show', $coop->id) }}" class="transform hover:scale-105 transition-transform h-full">
-            <div class="p-1 shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg h-full">
+            <div class="p-1 shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg h-full bg-white">
                 <div class="bg-white rounded-lg overflow-hidden flex flex-col items-center p-4 h-full">
                     <img src="{{ $coop->user?->image ? asset('images/' . $coop->user?->image) : asset('images/default-coop.jpg') }}" 
                           alt="{{ $coop->user?->name ?? 'Coopérative Inconnue' }}" 
@@ -51,7 +51,6 @@
                         @if($coop->contact)
                             <p class="text-gray-600 text-sm mt-1">Contact: {{ $coop->contact }}</p>
                         @else
-                            {{-- Ligne de remplissage invisible pour maintenir la hauteur --}}
                             <p class="text-gray-600 text-sm mt-1 invisible">Contact: placeholder</p>
                         @endif
                         

@@ -74,7 +74,7 @@
         @forelse ($coop->products as $product)
             <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col overflow-hidden">
 
-                <div class="w-full h-48 flex items-center justify-center bg-gray-50 overflow-hidden p-2">
+                <div class="w-full h-48 flex items-center justify-center bg-white overflow-hidden p-2">
                     <img loading="lazy" src="{{ asset('storage/products/' . basename($product->image)) }}"
                           alt="{{ $product->name }}"
                           class="max-h-full max-w-full object-contain transform hover:scale-105 transition-transform duration-500">
@@ -155,8 +155,8 @@
                                       placeholder="{{ $userHasReviewed ? 'Ajouter un autre commentaire simple (sans note)...' : 'Ajouter un commentaire ou un avis...' }}"></textarea>
                             
                             <button type="submit"
-                                class="w-full bg-gray-200 text-gray-700 font-bold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors text-sm shadow-sm">
-                                **Publier**
+                                class="w-full bg-orange-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors text-sm shadow-sm">
+                                Publier
                             </button>
                         </form>
                     @else
