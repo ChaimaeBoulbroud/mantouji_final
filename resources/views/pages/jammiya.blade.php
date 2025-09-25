@@ -81,7 +81,7 @@
                                 <button class="delete-btn"><img src="/images/icones/delete.png" alt=""   style="width : 35px"></button>
                             </form>
                         </div>
-                    <button class="show-comments-btn">Show Comments</button>
+                    {{-- <button class="show-comments-btn">Show Comments</button> --}}
                 </div>
             @endforeach
         </div>

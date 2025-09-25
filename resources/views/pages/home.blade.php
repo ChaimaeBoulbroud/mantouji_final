@@ -36,6 +36,26 @@
         </div>
     </div>
 
+    <div class="guide-container">
+        <div class="guide-left">
+            <div class="guide-left-text">
+                <p>Votre guide vers les meilleurs produits de Figuig ✨</p>
+            </div>
+            <div class="guide-left-ste">
+                <p>Get iton</p>
+                <p>🌐   Www.Mantouji.org</p>
+            </div>
+        </div>
+        <div class="guide-right">
+            <div class="guide-right-img-1">
+                <img src="/images/bg/fiig.png" alt="" srcset="">
+            </div>
+            <div class="guide-right-img-2">
+                <img src="/images/bg/fiig-2.png" alt="" srcset="">
+            </div>
+        </div>
+    </div>
+
     <div class="figuig-to-you-container" id="propo">
         <div class="figuig-to-you"> 
             <p>De Figuig à vous</p>
