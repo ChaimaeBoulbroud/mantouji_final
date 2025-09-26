@@ -66,4 +66,4 @@ Route::post('/products/{product}/comments', [CommentController::class, 'store'])
     ->name('comments.store')
     ->middleware('auth');
 
-    // tesstoo
+    // tesstoox
