@@ -21,6 +21,12 @@
             outline: 2px solid #facc15;
             outline-offset: 2px;
         }
+        #fix-size-img {
+            width: 16% !important;
+        }
+        #button-color {
+            background-color: #f97316;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -109,7 +115,7 @@
                         <div class="mt-3 space-y-3 max-h-48 overflow-y-auto pr-2 text-sm border-t pt-2">
                             @forelse ($product->comments as $comment)
                                 <div class="flex items-start bg-gray-50 p-3 rounded-lg border">
-                                    <img src="{{ $comment->user && $comment->user->image ? asset('images/' . $comment->user->image) : asset('images/default-user.jpg') }}"
+                                    <img id="fix-size-img" src="{{ $comment->user && $comment->user->image ? asset('images/' . $comment->user->image) : asset('images/default-user.jpg') }}"
                                           alt="{{ $comment->user ? $comment->user->name : 'Utilisateur Supprimé' }}"
                                           class="w-7 h-7 rounded-full mr-3 object-cover flex-shrink-0">
                                     <div class="flex-grow">
@@ -153,11 +159,12 @@
                                 <input type="hidden" name="rating" value="0"> 
                             @endif
 
-                            <textarea name="comment" rows="2" 
+                            <textarea name="comment" rows="2"
                                       class="w-full p-2 border border-gray-300 rounded-lg text-gray-700 mb-2 text-sm focus:ring-orange-500 focus:border-orange-500" 
                                       placeholder="{{ $userHasReviewed ? 'Ajouter un autre commentaire simple (sans note)...' : 'Ajouter un commentaire ou un avis...' }}"></textarea>
                             
                             <button type="submit"
+                                id="button-color"
                                 class="w-full bg-orange-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-700 transition-colors text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400">
                                 Publier
                             </button>
