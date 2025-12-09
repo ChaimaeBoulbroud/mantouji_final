@@ -3,12 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/home.css">
     <title>Home</title>
+        <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    primary: "#E25C1A",
+                    accent: "#F4C95D",
+                    foreground: "#ffffff",
+                    background: "#0F0F0F",
+                },
+            },
+        },
+    };
+</script>
+<style>
+
+    .text-gradient {
+        background: linear-gradient(90deg, #E25C1A, #F4C95D);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+    }
+
+    .animate-float {
+        animation: float 4s ease-in-out infinite;
+    }
+
+    .animate-float-delayed {
+        animation: float 5s ease-in-out infinite;
+        animation-delay: 1s;
+    }
+
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-fade-up {
+        animation: fadeUp 1s ease forwards;
+    }
+
+    .animate-fade-up-delayed {
+        animation: fadeUp 1.4s ease forwards;
+    }
+
+</style>
 </head>
 <body>
-    <div class="home">
+    <!-- <div class="home">
         <x-navbar />
         <div class="content-container" id="Accueil">
             <div class="logo">
@@ -34,7 +91,81 @@
                 @endif
             </div>
         </div>
+    </div> -->
+<x-navbar />
+<section
+    id="hero"
+    class="relative min-h-screen flex items-center justify-center overflow-hidden"
+    dir="rtl"
+>
+
+    <div
+        class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style="background-image: url('{{ asset('/images/bg/figig-1.jpeg') }}')"
+    >
+        <div class="absolute inset-0 bg-gradient-to-b from-foreground/20 via-foreground/40 to-foreground/50"></div>
     </div>
+
+    <div class="absolute top-1/4 right-10 w-20 h-20 rounded-full bg-primary/20 blur-2xl animate-float"></div>
+    <div class="absolute bottom-1/3 left-20 w-32 h-32 rounded-full bg-accent/20 blur-3xl animate-float-delayed"></div>
+
+    <div class="relative z-10 container mx-auto px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+
+            <h1 class="font-amiri text-5xl md:text-7xl lg:text-8xl font-bold text-primary-foreground mb-6 animate-fade-up leading-tight">
+                ثروة <span class="text-gradient">فكيك</span> في كل منتج
+            </h1>
+
+            <p class="text-xl md:text-2xl text-primary-foreground/80 mb-10 animate-fade-up-delayed max-w-2xl mx-auto leading-relaxed">
+                تمور وحرف فكيك… أصالة تعبر الأجيال <br />
+                <span class="text-primary-foreground/60 text-lg">
+                    اكتشف كنوز واحة فكيك الأصيلة
+                </span>
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up-delayed">
+
+                <a href="#service"
+                    class="px-6 py-3 rounded-full font-medium transition-all duration-300 
+                            bg-primary text-white hover:bg-primary/80 shadow-lg text-center">
+                       مسجل بالفعل؟
+                    </a>
+                
+                <a href="{{Route('login')}}"
+                    class="px-6 py-3 rounded-full font-medium transition-all duration-300 
+                            border border-primary text-primary hover:bg-primary hover:text-white text-center">
+التسجيل                     
+                </a>
+                    
+            </div>
+
+            <div class="grid grid-cols-3 gap-8 mt-16 max-w-lg mx-auto animate-fade-up-delayed">
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-primary mb-1">+50</div>
+                    <div class="text-primary-foreground/60 text-sm">تعاونية</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-primary mb-1">+1000</div>
+                    <div class="text-primary-foreground/60 text-sm">منتج</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-primary mb-1">+5000</div>
+                    <div class="text-primary-foreground/60 text-sm">عميل</div>
+                </div>
+            </div>
+
+        </div>
+
+        <a
+            href="#about"
+            class=" mt-8 absolute  left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-primary-foreground/60 hover:text-primary transition-colors animate-bounce"
+        >
+            <span class="text-xs">اكتشف المزيد</span>
+            <i data-lucide="arrow-down" class="w-5 h-5"></i>
+        </a>
+
+    </div>
+</section>
 
     <div class="guide-container">
         <div class="guide-left">
@@ -228,6 +359,10 @@
         </div>
     </div>
 
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+        <script>
+            lucide.createIcons();
+        </script>
     <script src="js/navbar.js"></script>
 </body>
 </html>
